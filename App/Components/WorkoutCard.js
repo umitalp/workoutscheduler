@@ -5,7 +5,10 @@ import {
 	CardItem,
 	Text,
 	Button,
-	Icon,
+  Icon,
+  Right,
+  Left,
+  Body
 } from "native-base";
 import { connect } from "react-redux";
 import images from '../Themes/Images'
@@ -13,31 +16,49 @@ import { selectWorkout } from '../Redux/WorkoutRedux'
 
 class WorkoutCard extends React.Component {
 
-    onParticipate = (title) => {
-        this.props.selectWorkout(title)
-        this.props.navigation.navigate("ListScreen")
-    }
+  onParticipate = (title) => {
+    console.tron.display({
+      name: 'Props',
+      value: {
+        props: this.props
+      }
+    })
+    this.props.selectWorkout(title)
+    this.props.navigation.navigate("ListScreen")
+  }
 
 	render() {
-        const { title, tag } = this.props
+        const { title, tag, image } = this.props
 		return (
 			<Card style={{ flex: 0 }}>
-                <CardItem>
-                    <Text>{title}</Text>
-                </CardItem>
-                <CardItem>
-                    <Image
-                        style={{ resizeMode: "cover", height: 200, flex: 1 }}
-                        source={images.aerobic}
-                    />
-                </CardItem>
-                <CardItem>
-                    <Button onPress={() => this.onParticipate(title)} transparent>
-                        <Text>Participate</Text>
-                        <Icon name="arrow-forward" />
-                    </Button>
-                </CardItem>
-            </Card>
+        <CardItem>
+          <Left>
+            <Icon name="pulse"/>
+            <Body>
+              <Text>{title} Class</Text>
+              <Text note>by John</Text>
+            </Body>
+          </Left>
+        </CardItem>
+          <CardItem>
+            <Image
+              style={{ borderWidth: 1, borderColor: 'transparent', borderRadius: 10, resizeMode: "cover", height: 200, flex: 1 }}
+              source={image}
+            />
+          </CardItem>
+          <CardItem>
+            <Left>
+                <Text>100 participant</Text>
+            </Left>
+            <Body />
+            <Right>
+              <Button iconRight onPress={() => this.onParticipate(title)} transparent>
+                <Text>Participate</Text>
+                <Icon name="arrow-forward" />
+              </Button>
+            </Right>
+          </CardItem>
+      </Card>
 		);
 	}
 }

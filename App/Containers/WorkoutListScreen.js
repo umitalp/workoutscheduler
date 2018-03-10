@@ -2,24 +2,30 @@ import React from "react";
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
 import { List, ListItem, Text, View, Container, Header, Title, Button, Left, Right, Body, Icon } from "native-base";
-// import Icon from 'react-native-vector-icons/Ionicons'
 
 import WorkoutCard from '../Components/WorkoutCard'
+
 const dataObjects = [
-    { title: "Aerobic", tag: 'aerobic' },
-    { title: "Gym", tag: 'gym' },
-    { title: "Pilates", tag: 'pilates' },
-    { title: "Runing", tag: 'run' },
-    { title: "Yoga", tag: 'yoga' }
-  ];
+  { title: "Aerobic", tag: 'aerobic', image: require("../Images/aerobic.jpg") },
+  { title: "Gym", tag: 'gym', image: require("../Images/gym.jpg")  },
+  { title: "Pilates", tag: 'pilates', image: require("../Images/pilates.jpg")  },
+  { title: "Runing", tag: 'run', image: require("../Images/run.png")  },
+  { title: "Yoga", tag: 'yoga', image: require("../Images/yoga.jpg")  }
+];
+
 export default class WorkoutListScreen extends React.Component {
 
   _renderItem = ({ item }) => {
     return (
-      <WorkoutCard title={item.title} tag={item.tag} navigation={this.props.navigation} />
+      <WorkoutCard
+        title={item.title}
+        tag={item.tag}
+        image={item.image}
+        navigation={this.props.navigation}
+      />
     );
   };
-  
+
   render() {
     return (
       <Container>
@@ -30,7 +36,7 @@ export default class WorkoutListScreen extends React.Component {
             </Button>
           </Left>
           <Body style={{ flex: 3 }}>
-            <Title>List Example</Title>
+            <Title>Avaliable Workouts</Title>
           </Body>
           <Right />
         </Header>

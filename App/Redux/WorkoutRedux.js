@@ -1,4 +1,5 @@
 import Immutable from 'seamless-immutable'
+import addParticiant from '../Services/Api'
 
 /* ------------- Types ------------- */
 export const SELECT_WORKOUT = 'SELECT_WORKOUT'
@@ -6,16 +7,72 @@ export const ADD_PARTICIPANT = 'ADD_PARTICIPANT'
 export const REMOVE_PARTICIPANT = 'REMOVE_PARTICIPANT'
 
 /* ------------- Action ------------- */
-export function selectWorkout(workout) {
-  return { type: SELECT_WORKOUT, workout }
+export const selectWorkout = (workout) => {
+  return dispatch => {
+    dispatch({
+      type: SELECT_WORKOUT, workout: workout
+    })
+  }
 }
 
-export function addParticiant(index) {
-  return { type: ADD_PARTICIPANT, index }
+export const loadSocketDataToRedux = (data) => {
+	return (dispatch) => {
+		dispatch({ type: INITIAL_DATA, data })
+	}	
 }
 
-export function removeParticiant(index) {
-  return { type: REMOVE_PARTICIPANT, index }
+export const addParticipantToRedux = (name, workout) => {
+	return (dispatch) => {
+      const data = {
+        name,
+        workout
+      }
+
+      // Call add reducer
+      dispatch({ type: ADD_PARTICIPANT, name, workout })
+	}	
+}
+
+export const removeParticipantFromRedux = (name, workout) => {
+	return (dispatch) => {
+      const data = {
+        name,
+        workout
+      }
+
+      // Call remove reducer
+      dispatch({ type: REMOVE_PARTICIPANT, name, workout })
+	}	
+}
+
+export const addParticipant = (socket, name, workout) => {
+	return (dispatch) => {
+      const data = {
+        name,
+        workout
+      }
+
+      // Send event to socket
+      socket.emit('addParticipant', data)
+
+      // Call add reducer
+      dispatch({ type: ADD_PARTICIPANT, name, workout })
+	}	
+}
+
+export const removeParticipant = (socket, name, workout) => {
+	return (dispatch) => {
+      const data = {
+        name,
+        workout
+      }
+
+      // Send event to socket
+      socket.emit('removeParticipant', data)
+
+      // Call remove reducer
+      dispatch({ type: REMOVE_PARTICIPANT, name, workout })
+	}	
 }
 
 /* ------------- Reducers ------------- */

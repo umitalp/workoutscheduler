@@ -1,25 +1,5 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-import SocketIOClient from 'socket.io-client';
-
-const io = () => { 
-
-  getIO = () =>  SocketIOClient('http://localhost:3000')
-
-  addParticipant = (name, workout) => {
-    getIO.emit('add-participant', { name, workout})
-  }
-
-  
-
-  return {
-    // a list of the API functions from step 2
-    startIO,
-    getRate,
-    getUser
-  }
-}
-
 
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {

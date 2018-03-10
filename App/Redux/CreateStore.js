@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import RehydrationServices from '../Services/RehydrationServices'
 import ReduxPersist from '../Config/ReduxPersist'
 import ScreenTracking from './ScreenTrackingMiddleware'
+import thunk from 'redux-thunk'
 
 // creates the store
 export default (rootReducer, rootSaga) => {
@@ -15,6 +16,7 @@ export default (rootReducer, rootSaga) => {
 
   /* ------------- Analytics Middleware ------------- */
   middleware.push(ScreenTracking)
+  middleware.push(thunk)
 
   /* ------------- Saga Middleware ------------- */
 
