@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import StartupActions from "../Redux/StartupRedux";
 import ReduxPersist from "../Config/ReduxPersist";
 
+import styles from "./Styles/RootContainerStyles";
+
 class RootContainer extends Component {
 	componentDidMount() {
 		// if redux persist is not active fire startup action
@@ -15,7 +17,7 @@ class RootContainer extends Component {
 
 	render() {
 		return (
-			<View>
+			<View style={styles.applicationView}>
 				<StatusBar barStyle="light-content" />
 				<ReduxNavigation />
 			</View>
