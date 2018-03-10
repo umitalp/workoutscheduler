@@ -13,6 +13,9 @@ class RootContainer extends Component {
 		if (!ReduxPersist.active) {
 			this.props.startup();
 		}
+
+		// this.socket = SocketIOClient('http://localhost:3000');
+		
 	}
 
 	render() {

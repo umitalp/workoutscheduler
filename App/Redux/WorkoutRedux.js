@@ -1,21 +1,36 @@
-import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
-/* ------------- Types and Action Creators ------------- */
-const { Types, Creators } = createActions({
-  selectWorkout: ['username'],
-})
+/* ------------- Types ------------- */
+export const SELECT_WORKOUT = 'SELECT_WORKOUT'
+export const ADD_PARTICIPANT = 'ADD_PARTICIPANT'
+export const REMOVE_PARTICIPANT = 'REMOVE_PARTICIPANT'
 
-export const WorkoutTypes = Types
-export default Creators
+/* ------------- Action ------------- */
+export function selectWorkout(workout) {
+  return { type: SELECT_WORKOUT, workout }
+}
 
-export const INITIAL_STATE = Immutable({
-  selectedWorkout: null,
-})
+export function addParticiant(index) {
+  return { type: ADD_PARTICIPANT, index }
+}
 
-export const request = (state, { workout }) =>
-  state.merge({ selectedWorkout: workout })
+export function removeParticiant(index) {
+  return { type: REMOVE_PARTICIPANT, index }
+}
 
-export const reducer = createReducer(INITIAL_STATE, {
-  [Types.SELECT_WORKOUT]: request,
-})
+/* ------------- Reducers ------------- */
+const initialState = {
+  selectedWorkout: null
+}
+
+const workoutReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SELECT_WORKOUT:
+      return { ...state, selectedWorkout: action.workout}
+    default:
+      return state
+  }
+}
+  
+export default workoutReducer
+

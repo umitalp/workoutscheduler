@@ -12,14 +12,15 @@ const dataObjects = [
     { title: "Runing", tag: 'run' },
     { title: "Yoga", tag: 'yoga' }
   ];
-class WorkoutListScreen extends React.Component {
+export default class WorkoutListScreen extends React.Component {
+
   _renderItem = ({ item }) => {
     return (
-      <WorkoutCard title={item.title} tag={item.tag} />
+      <WorkoutCard title={item.title} tag={item.tag} navigation={this.props.navigation} />
     );
   };
+  
   render() {
-    
     return (
       <Container>
         <Header>
@@ -38,10 +39,3 @@ class WorkoutListScreen extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    // ...redux state to props here
-  };
-};
-
-export default connect(mapStateToProps)(WorkoutListScreen);

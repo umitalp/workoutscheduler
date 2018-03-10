@@ -9,11 +9,13 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import images from '../Themes/Images'
+import { selectWorkout } from '../Redux/WorkoutRedux'
 
 class WorkoutCard extends React.Component {
 
-    onParticipate = (tag) => {
-
+    onParticipate = (title) => {
+        this.props.selectWorkout(title)
+        this.props.navigation.navigate("ListScreen")
     }
 
 	render() {
@@ -30,7 +32,7 @@ class WorkoutCard extends React.Component {
                     />
                 </CardItem>
                 <CardItem>
-                    <Button transparent  >
+                    <Button onPress={() => this.onParticipate(title)} transparent>
                         <Text>Participate</Text>
                         <Icon name="arrow-forward" />
                     </Button>
@@ -40,10 +42,9 @@ class WorkoutCard extends React.Component {
 	}
 }
 
-const mapDispatchToProps = state => {
-    return {
-        
-    }
-};
-  
-  export default connect(null, mapDispatchToProps)(WorkoutCard);
+const mapDispatchToProps = (dispatch) => ({
+    selectWorkout: (workout) => dispatch(selectWorkout(workout))
+})
+
+export default connect(null, mapDispatchToProps)(WorkoutCard);
+
