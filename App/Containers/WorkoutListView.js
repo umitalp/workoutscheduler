@@ -27,7 +27,7 @@ const dataObjects = [
   { title: "20th Title", description: "20th Description" },
   { title: "BLACKJACK!", description: "BLACKJACK! Description" },
 ];
-class ListviewExample extends React.Component {
+class WorkoutListView extends React.Component {
   _renderItem = ({ item }) => {
     return (
       <ListItem style={{ justifyContent: "space-between" }}>
@@ -40,13 +40,8 @@ class ListviewExample extends React.Component {
     return (
       <Container>
         <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Left>
           <Body style={{ flex: 3 }}>
-            <Title>List Example</Title>
+            <Title>Participant List</Title>
           </Body>
           <Right />
         </Header>
@@ -61,4 +56,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ListviewExample);
+export default connect(mapStateToProps)(WorkoutListView);

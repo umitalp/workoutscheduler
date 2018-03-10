@@ -8,6 +8,8 @@ import {
 	Icon,
 } from "native-base";
 
+import images from '../Themes/Images'
+
 export default class WorkoutCard extends React.Component {
 	render() {
 		return (
@@ -15,7 +17,7 @@ export default class WorkoutCard extends React.Component {
                 <CardItem>
                     <Image
                         style={{ resizeMode: "cover", height: 200, flex: 1 }}
-                        source={{ uri: "https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" }}
+                        source={images.aerobic}
                     />
                 </CardItem>
                 <CardItem>
