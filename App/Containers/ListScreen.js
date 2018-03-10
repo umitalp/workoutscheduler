@@ -27,7 +27,7 @@ const dataObjects = [
   { title: "20th Title", description: "20th Description" },
   { title: "BLACKJACK!", description: "BLACKJACK! Description" },
 ];
-class ListviewExample extends React.Component {
+class ListScreen extends React.Component {
   _renderItem = ({ item }) => {
     return (
       <ListItem style={{ justifyContent: "space-between" }}>
@@ -41,8 +41,8 @@ class ListviewExample extends React.Component {
       <Container>
         <Header>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="ios-menu" />
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body style={{ flex: 3 }}>
@@ -61,4 +61,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ListviewExample);
+export default connect(mapStateToProps)(ListScreen);

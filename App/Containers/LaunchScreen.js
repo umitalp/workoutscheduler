@@ -26,7 +26,7 @@ export default class LaunchScreen extends React.Component {
 					</View>
 					<Button
 						style={{ alignSelf: "center" }}
-						onPress={() => this.props.navigation.navigate("NavigationDrawer")}
+						onPress={() => this.props.navigation.navigate("ListScreen")}
 					>
 						<NBText>Explore!</NBText>
 					</Button>

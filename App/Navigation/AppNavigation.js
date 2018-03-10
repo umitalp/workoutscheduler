@@ -3,18 +3,16 @@ import { StackNavigator } from "react-navigation";
 import styles from "./Styles/NavigationStyles";
 
 // screens identified by the router
-import Login from "../Containers/LoginScreen";
+import ListScreen from "../Containers/ListScreen";
 import LaunchScreen from "../Containers/LaunchScreen";
-import NavigationDrawer from "./NavigationDrawer";
 
 const PrimaryNav = StackNavigator(
 	{
-		Login: { screen: Login },
 		LaunchScreen: { screen: LaunchScreen },
-		NavigationDrawer: { screen: NavigationDrawer },
+		ListScreen: { screen: ListScreen },
 	},
 	{
-		initialRouteName: "Login",
+		initialRouteName: "LaunchScreen",
 		headerMode: "none",
 	}
 );
