@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force",
@@ -36,7 +38,7 @@
     "react-native-config": "^0.6.0",
     "react-native-drawer": "^2.3.0",
     "react-native-vector-icons": "4.3.0",
-    "react-navigation": "^1.0.0-beta.7",
+    "react-navigation": "v1.0.0-beta.26",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-persist": "^4.1.0",
