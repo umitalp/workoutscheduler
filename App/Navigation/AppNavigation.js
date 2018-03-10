@@ -2,19 +2,17 @@ import React from "react";
 import { StackNavigator } from "react-navigation";
 import styles from "./Styles/NavigationStyles";
 
-import LandingScreenView from "../Containers/LandingScreenView";
-import ParticipantListView from "../Containers/ParticipantListView";
-import WorkoutListView from "../Containers/WorkoutListView";
-
+// screens identified by the router
+import ListScreen from "../Containers/ListScreen";
+import LaunchScreen from "../Containers/LaunchScreen";
 
 const PrimaryNav = StackNavigator(
 	{
-		LandingScreenView: { screen: LandingScreenView},
-		WorkoutListView: { screen: WorkoutListView },
-		ParticipantListView: { screen: ParticipantListView }
+		LaunchScreen: { screen: LaunchScreen },
+		ListScreen: { screen: ListScreen },
 	},
 	{
-		initialRouteName: "LandingScreenView",
+		initialRouteName: "LaunchScreen",
 		headerMode: "none",
 	}
 );
