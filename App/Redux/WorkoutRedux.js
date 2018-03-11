@@ -111,13 +111,6 @@ const workoutReducer = (state = initialState, action) => {
     case SELECT_WORKOUT:
       return { ...state, selectedWorkout: { title: action.title, tag: action.tag }}
     case ADD_PARTICIPANT:
-      console.tron.display({
-        name: 'Reduces',
-        value: {
-          action,
-          state
-        }
-      })
       return { ...state, workout: state[action.workout].push({ name: action.name }) }
     case REMOVE_PARTICIPANT:
       return { ...state, workout: state[action.workout].find(e => name === name).remove() }

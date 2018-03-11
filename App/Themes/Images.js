@@ -5,6 +5,7 @@ const images = {
 	'pilates': require("../Images/pilates.jpg"),
 	'run': require("../Images/run.png"),
 	'yoga': require("../Images/yoga.jpg"),
+	'logo': require("../Images/logo.png"),
 };
 
 export default images;

@@ -12,7 +12,10 @@ export default class LaunchScreen extends React.Component {
 			<View style={styles.mainContainer}>
 				<ScrollView style={styles.container}>
 					<View style={styles.centered}>
-						<Image source={Images.gym} style={styles.logo} />
+						<Image source={Images.logo} style={styles.logo} />
+						<Text style={{ fontSize: 20 }}>
+							Workout Scheduler
+						</Text>
 					</View>
 
 					<View style={styles.section}>
