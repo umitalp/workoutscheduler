@@ -7,11 +7,9 @@ export const ADD_PARTICIPANT = 'ADD_PARTICIPANT'
 export const REMOVE_PARTICIPANT = 'REMOVE_PARTICIPANT'
 
 /* ------------- Action ------------- */
-export const selectWorkout = (workout) => {
-  return dispatch => {
-    dispatch({
-      type: SELECT_WORKOUT, workout: workout
-    })
+export const selectWorkout = (title, tag) => {
+  return (dispatch) => {
+    dispatch({ type: SELECT_WORKOUT, title, tag})
   }
 }
 
@@ -71,19 +69,58 @@ export const removeParticipant = (socket, name, workout) => {
       socket.emit('removeParticipant', data)
 
       // Call remove reducer
-      dispatch({ type: REMOVE_PARTICIPANT, name, workout })
+      dispatch({ type: REMOVE_PARTICIPANT, data })
 	}	
 }
 
 /* ------------- Reducers ------------- */
 const initialState = {
-  selectedWorkout: null
+  selectedWorkout: {
+    title: null,
+    tag: null
+  },
+  aerobic: [
+    { name: 'Alp' },
+    { name: 'Umit' },
+    { name: 'John' }
+  ],
+  gym: [
+    { name: 'Eric' },
+    { name: 'Alex' },
+    { name: 'Seb' }
+  ],
+  pilates: [
+    { name: 'Erich' },
+    { name: 'Costa' },
+    { name: 'Povol' }
+  ],
+  run: [
+    { name: 'Justin' },
+    { name: 'Greg' },
+    { name: 'Brad' }
+  ],
+  yoga: [
+    { name: 'Hayley' },
+    { name: 'Costa' },
+    { name: 'Pavel' }
+  ]
 }
 
 const workoutReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECT_WORKOUT:
-      return { ...state, selectedWorkout: action.workout}
+      return { ...state, selectedWorkout: { title: action.title, tag: action.tag }}
+    case ADD_PARTICIPANT:
+      console.tron.display({
+        name: 'Reduces',
+        value: {
+          action,
+          state
+        }
+      })
+      return { ...state, workout: state[action.workout].push({ name: action.name }) }
+    case REMOVE_PARTICIPANT:
+      return { ...state, workout: state[action.workout].find(e => name === name).remove() }
     default:
       return state
   }

@@ -1,11 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
-import { List, ListItem, Text, View, Container, Header, Title, Button, Left, Right, Body, Icon } from "native-base";
+import ParticipantCard from '../Components/ParticipantCard'
+import { List, ListItem, Text, View, Container, Content, Header, Title, Button, Left, Right, Body, Icon } from "native-base";
+import NameForm from "../Components/NameForm";
 
 class ListScreen extends React.Component {
+  _renderItem = ({ item }) => {
+    return (
+      <ParticipantCard
+        name={item.name}
+      />
+    );
+  };
+
   render() {
-    const { selectedWorkout } = this.props
+    const { selectedWorkout, selectedWorkoutList } = this.props
     return (
       <Container>
         <Header>
@@ -15,17 +25,23 @@ class ListScreen extends React.Component {
             </Button>
           </Left>
           <Body style={{ flex: 3 }}>
-            <Title>{selectedWorkout} Participants</Title>
+            <Title>{selectedWorkout.Title} Participants</Title>
           </Body>
-          <Right />
+          <Right>
+          </Right>
         </Header>
+        <Content>
+          <NameForm />
+          <FlatList data={selectedWorkoutList} keyExtractor={item => item.name} renderItem={this._renderItem} />
+        </Content>
       </Container>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  selectedWorkout: state.workout.selectedWorkout
+  selectedWorkout: state.workout.selectedWorkout,
+  selectedWorkoutList: state.workout[state.workout.selectedWorkout.tag]
 })
 
 export default connect(mapStateToProps)(ListScreen);

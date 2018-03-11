@@ -12,23 +12,17 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import images from '../Themes/Images'
-import { selectWorkout } from '../Redux/WorkoutRedux'
+import { selectWorkout, addParticipantToRedux } from '../Redux/WorkoutRedux'
 
 class WorkoutCard extends React.Component {
 
-  onParticipate = (title) => {
-    console.tron.display({
-      name: 'Props',
-      value: {
-        props: this.props
-      }
-    })
-    this.props.selectWorkout(title)
+  onParticipate = (title, tag) => {
+    this.props.selectWorkout(title, tag)
     this.props.navigation.navigate("ListScreen")
   }
 
 	render() {
-        const { title, tag, image } = this.props
+    const { title, tag, image, workoutList } = this.props
 		return (
 			<Card style={{ flex: 0 }}>
         <CardItem>
@@ -36,7 +30,7 @@ class WorkoutCard extends React.Component {
             <Icon name="pulse"/>
             <Body>
               <Text>{title} Class</Text>
-              <Text note>by John</Text>
+              <Text note>{workoutList[tag].length} participant</Text>
             </Body>
           </Left>
         </CardItem>
@@ -48,11 +42,11 @@ class WorkoutCard extends React.Component {
           </CardItem>
           <CardItem>
             <Left>
-                <Text>100 participant</Text>
             </Left>
-            <Body />
+            <Body>
+            </Body>
             <Right>
-              <Button iconRight onPress={() => this.onParticipate(title)} transparent>
+              <Button iconRight onPress={() => this.onParticipate(title, tag)} transparent>
                 <Text>Participate</Text>
                 <Icon name="arrow-forward" />
               </Button>
@@ -64,8 +58,13 @@ class WorkoutCard extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    selectWorkout: (workout) => dispatch(selectWorkout(workout))
+  selectWorkout: (title, tag) => dispatch(selectWorkout(title, tag)),
+  addParticipant: (name, workout) => dispatch(addParticipantToRedux(name, workout))
 })
 
-export default connect(null, mapDispatchToProps)(WorkoutCard);
+const mapStateToProps = (state) => ({
+  workoutList: state.workout
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutCard);
 
