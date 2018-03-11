@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { FlatList } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 import ParticipantCard from '../Components/ParticipantCard'
 import { List, ListItem, Text, View, Container, Content, Header, Title, Button, Left, Right, Body, Icon } from "native-base";
 import NameForm from "../Components/NameForm";
@@ -8,14 +8,12 @@ import NameForm from "../Components/NameForm";
 class ListScreen extends React.Component {
   _renderItem = ({ item }) => {
     return (
-      <ParticipantCard
-        name={item.name}
-      />
+      <ParticipantCard name={item.name} />
     );
   };
 
   render() {
-    const { selectedWorkout, selectedWorkoutList } = this.props
+    const { selectedWorkout, workout } = this.props
     return (
       <Container>
         <Header>
@@ -32,7 +30,14 @@ class ListScreen extends React.Component {
         </Header>
         <Content>
           <NameForm />
-          <FlatList data={selectedWorkoutList} keyExtractor={item => item.name} renderItem={this._renderItem} />
+            <ScrollView>
+              {workout[selectedWorkout.tag].map((e, index) =>  <ParticipantCard key={index} name={e.name} />)}
+            </ScrollView>
+          {/* <FlatList 
+            data={workout[selectedWorkout.tag]}
+            keyExtractor={item => item.name}
+            renderItem={this._renderItem}
+          /> */}
         </Content>
       </Container>
     );
@@ -41,7 +46,7 @@ class ListScreen extends React.Component {
 
 const mapStateToProps = (state) => ({
   selectedWorkout: state.workout.selectedWorkout,
-  selectedWorkoutList: state.workout[state.workout.selectedWorkout.tag]
+  workout: state.workout
 })
 
 export default connect(mapStateToProps)(ListScreen);
