@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable'
-import addParticiant from '../Services/Api'
+import { socket } from '../Services/Socket'
 
 /* ------------- Types ------------- */
 export const SELECT_WORKOUT = 'SELECT_WORKOUT'
@@ -43,7 +43,7 @@ export const removeParticipantFromRedux = (name, workout) => {
 	}	
 }
 
-export const addParticipant = (socket, name, workout) => {
+export const addParticipant = (name, workout) => {
 	return (dispatch) => {
       const data = {
         name,
@@ -58,7 +58,7 @@ export const addParticipant = (socket, name, workout) => {
 	}	
 }
 
-export const removeParticipant = (socket, name, workout) => {
+export const removeParticipant = (name, workout) => {
 	return (dispatch) => {
       const data = {
         name,

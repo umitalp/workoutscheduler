@@ -9,7 +9,7 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import { View } from 'react-native'
-import { addParticipantToRedux } from '../Redux/WorkoutRedux'
+import { addParticipant } from '../Redux/WorkoutRedux'
 
 class NameForm extends React.Component {
 
@@ -53,7 +53,7 @@ class NameForm extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addParticipant: (name, workout) => dispatch(addParticipantToRedux(name, workout))
+    addParticipant: (name, workout) => dispatch(addParticipant(name, workout))
 })
 
 const mapStateToProps = (state) => ({
