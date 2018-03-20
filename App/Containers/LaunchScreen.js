@@ -17,7 +17,6 @@ export default class LaunchScreen extends React.Component {
 							Workout Scheduler
 						</Text>
 					</View>
-
 					<View style={styles.section}>
 						<Text style={styles.sectionText}>
 							{

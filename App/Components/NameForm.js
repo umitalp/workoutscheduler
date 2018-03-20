@@ -9,7 +9,7 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import { View } from 'react-native'
-import { addParticipant } from '../Redux/WorkoutRedux'
+import { addParticipant } from '../Redux/actions'
 
 class NameForm extends React.Component {
 

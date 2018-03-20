@@ -1,5 +1,4 @@
 import io from 'socket.io-client';
-import { addParticipantToRedux } from '../Redux/WorkoutRedux'
 
 export let socket
 

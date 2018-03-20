@@ -7,7 +7,7 @@ import ReduxPersist from "../Config/ReduxPersist";
 import { socket, connectToSocket, disconnectFromSocket } from '../Services/Socket'
 
 import styles from "./Styles/RootContainerStyles";
-import { addParticipantToRedux, removeParticipantFromRedux, setupSocketToRedux } from "../Redux/WorkoutRedux";
+import workoutActions from "../Redux/actions";
 
 class RootContainer extends Component {
 	constructor(props)
@@ -47,7 +47,7 @@ class RootContainer extends Component {
 	render() {
 		return (
 			<View style={styles.applicationView}>
-				<StatusBar barStyle="light-content" />
+				<StatusBar />
 				<ReduxNavigation />
 			</View>
 		);
@@ -57,8 +57,8 @@ class RootContainer extends Component {
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = dispatch => ({
 	startup: () => dispatch(StartupActions.startup()),
-	addParticipantToRedux: (name, workout) => dispatch(addParticipantToRedux(name, workout)),
-	removeParticipantFromRedux: (name, workout) => dispatch( removeParticipantFromRedux(name, workout))
+	addParticipantToRedux: (name, workout) => dispatch(workoutActions.addParticipantToRedux(name, workout)),
+	removeParticipantFromRedux: (name, workout) => dispatch(workoutActions.removeParticipantFromRedux(name, workout))
 });
 
 const mapStateToProps = (state = {}) => {

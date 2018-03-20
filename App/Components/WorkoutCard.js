@@ -12,7 +12,7 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import images from '../Themes/Images'
-import { selectWorkout, addParticipantToRedux } from '../Redux/WorkoutRedux'
+import { selectWorkout, addParticipantToRedux } from '../Redux/actions'
 
 class WorkoutCard extends React.Component {
 
